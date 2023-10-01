@@ -1,0 +1,16 @@
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\BAL.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\BAL.pdb
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\DAL.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\IronPdf.Assets.Rendering.Windows.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\IronPdf.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\MODEL.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\Newtonsoft.Json.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\DAL.pdb
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\MODEL.pdb
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\IronPdf.xml
+D:\ASP.NET\joclaims-api\Moeez\BAL\bin\Debug\Newtonsoft.Json.xml
+D:\ASP.NET\joclaims-api\Moeez\BAL\obj\Debug\BAL.csproj.AssemblyReference.cache
+D:\ASP.NET\joclaims-api\Moeez\BAL\obj\Debug\BAL.csproj.CoreCompileInputs.cache
+D:\ASP.NET\joclaims-api\Moeez\BAL\obj\Debug\BAL.csproj.CopyComplete
+D:\ASP.NET\joclaims-api\Moeez\BAL\obj\Debug\BAL.dll
+D:\ASP.NET\joclaims-api\Moeez\BAL\obj\Debug\BAL.pdb

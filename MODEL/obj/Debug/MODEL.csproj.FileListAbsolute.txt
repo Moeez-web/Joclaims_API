@@ -1,0 +1,6 @@
+D:\ASP.NET\joclaims-api\Moeez\MODEL\bin\Debug\MODEL.dll
+D:\ASP.NET\joclaims-api\Moeez\MODEL\bin\Debug\MODEL.pdb
+D:\ASP.NET\joclaims-api\Moeez\MODEL\obj\Debug\MODEL.csproj.AssemblyReference.cache
+D:\ASP.NET\joclaims-api\Moeez\MODEL\obj\Debug\MODEL.csproj.CoreCompileInputs.cache
+D:\ASP.NET\joclaims-api\Moeez\MODEL\obj\Debug\MODEL.dll
+D:\ASP.NET\joclaims-api\Moeez\MODEL\obj\Debug\MODEL.pdb

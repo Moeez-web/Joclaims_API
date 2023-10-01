@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C04C698-EF0E-4932-8807-C90D828E270E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MODEL</RootNamespace>
+    <AssemblyName>MODEL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BodyType.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="EstimationPrice.cs" />
+    <Compile Include="InspectAI\AdditionalFeature.cs" />
+    <Compile Include="InspectAI\AIInspectionRequest.cs" />
+    <Compile Include="InspectAI\BoundingBoxInformation.cs" />
+    <Compile Include="InspectAI\CaseDamageReport.cs" />
+    <Compile Include="InspectAI\Coordinates.cs" />
+    <Compile Include="InspectAI\DamagedParts.cs" />
+    <Compile Include="InspectAI\InpektlabResponse.cs" />
+    <Compile Include="InspectAI\InspektlabObj.cs" />
+    <Compile Include="InspectAI\InspektObj.cs" />
+    <Compile Include="InspectAI\PreInspection.cs" />
+    <Compile Include="InspectAI\RelevantImage.cs" />
+    <Compile Include="InspectAI\SizeOfDamage.cs" />
+    <Compile Include="InspectAI\VehicleReading.cs" />
+    <Compile Include="Models\Accident.cs" />
+    <Compile Include="Models\AccidentCost.cs" />
+    <Compile Include="Models\AccidentDamagePartsMeta.cs" />
+    <Compile Include="Models\AccidentData.cs" />
+    <Compile Include="Models\AccidentMarker.cs" />
+    <Compile Include="Models\AccidentMetaData.cs" />
+    <Compile Include="Models\AccidentPart.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AIjsonresponse.cs" />
+    <Compile Include="Models\AutomotivePartLog.cs" />
+    <Compile Include="Models\CarReadyImagePrice.cs" />
+    <Compile Include="Models\ClearanceSummary.cs" />
+    <Compile Include="Models\CommonMeta.cs" />
+    <Compile Include="Models\DamagePoint.cs" />
+    <Compile Include="Models\DamagePointPart.cs" />
+    <Compile Include="Models\DashboardAdditionalStats.cs" />
+    <Compile Include="Models\DashboardStats.cs" />
+    <Compile Include="Models\ExportDraftDocuments.cs" />
+    <Compile Include="Models\FaultyCompany.cs" />
+    <Compile Include="Models\FeaturePermission.cs" />
+    <Compile Include="Models\FileToUpload.cs" />
+    <Compile Include="Models\FuelType.cs" />
+    <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\ICStaffKPI.cs" />
+    <Compile Include="Models\ICWorkshop.cs" />
+    <Compile Include="Models\IndividualReturn.cs" />
+    <Compile Include="Models\JCSeriesCase.cs" />
+    <Compile Include="Models\joClaimsSeriesData.cs" />
+    <Compile Include="Models\JoclaimsSetting.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\MonthlyClaims.cs" />
+    <Compile Include="Models\OrderedParts.cs" />
+    <Compile Include="Models\PartsBargain.cs" />
+    <Compile Include="Models\PartsMeta.cs" />
+    <Compile Include="Models\PurchaseOrder.cs" />
+    <Compile Include="Models\ReplacementCar.cs" />
+    <Compile Include="Models\Report\Common\AccidentCarPartsPrice.cs" />
+    <Compile Include="Models\Report\Common\ChequeData.cs" />
+    <Compile Include="Models\Report\Common\companyDetailedStatistics.cs" />
+    <Compile Include="Models\Report\Common\CompanyStats.cs" />
+    <Compile Include="Models\Report\Common\DraftRequestReport.cs" />
+    <Compile Include="Models\Report\Common\MakeOffer.cs" />
+    <Compile Include="Models\Report\Common\PoRoDetailsReport.cs" />
+    <Compile Include="Models\Report\Common\PriceReductionReport.cs" />
+    <Compile Include="Models\Report\Common\SupplierOffer.cs" />
+    <Compile Include="Models\Report\Common\SupplierReport.cs" />
+    <Compile Include="Models\Report\Common\SurveyorDetailRequestReport.cs" />
+    <Compile Include="Models\Report\Common\SurveyorRequestCarsReport.cs" />
+    <Compile Include="Models\Report\Common\SurveyorRequestReport.cs" />
+    <Compile Include="Models\Report\Export_Documents\ExportDocuments.cs" />
+    <Compile Include="Models\RequestPartObj.cs" />
+    <Compile Include="Models\Request_Draft\DraftData.cs" />
+    <Compile Include="Models\Request_Draft\RequestDraft.cs" />
+    <Compile Include="Models\Request_Draft\RequestDraftImage.cs" />
+    <Compile Include="Models\Request_Draft\RequestDraftParts.cs" />
+    <Compile Include="Models\Request_Draft\RequestDraftTask.cs" />
+    <Compile Include="Models\SeriesCase.cs" />
+    <Compile Include="Models\SeriesDataMeta.cs" />
+    <Compile Include="Models\SupplierWorkDetail.cs" />
+    <Compile Include="Models\TabInfo.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\PartBranch.cs" />
+    <Compile Include="Models\PdfData.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\POApproval.cs" />
+    <Compile Include="Models\PSFilter.cs" />
+    <Compile Include="Models\PublishRequest.cs" />
+    <Compile Include="Models\QuotationPartRef.cs" />
+    <Compile Include="Models\QuotationSummary.cs" />
+    <Compile Include="Models\RequestAllOffersData.cs" />
+    <Compile Include="Models\RequestLog.cs" />
+    <Compile Include="Models\RequestResponse.cs" />
+    <Compile Include="Models\RequestSuppliers.cs" />
+    <Compile Include="Models\RequestTask.cs" />
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\SavePart.cs" />
+    <Compile Include="Models\AutomotivePart.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyProfile.cs" />
+    <Compile Include="Models\Companyrequests.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\GetRefferdSupplier.cs" />
+    <Compile Include="Models\ManufacturerRegion.cs" />
+    <Compile Include="Models\DemandProfile.cs" />
+    <Compile Include="Models\DemandQuotations.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\QuotationFilterModel.cs" />
+    <Compile Include="Models\GraphInfo.cs" />
+    <Compile Include="Models\ICDashboard.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Make.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\ObjectStatus.cs" />
+    <Compile Include="Models\ObjectType.cs" />
+    <Compile Include="Models\Demand.cs" />
+    <Compile Include="Models\PartInfo.cs" />
+    <Compile Include="Models\PartManufacturer.cs" />
+    <Compile Include="Models\PSDashboard.cs" />
+    <Compile Include="Models\Quotation.cs" />
+    <Compile Include="Models\QuotationData.cs" />
+    <Compile Include="Models\QuotationMetaData.cs" />
+    <Compile Include="Models\QuotationPart.cs" />
+    <Compile Include="Models\ReferredQuotationParts.cs" />
+    <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\RequestData.cs" />
+    <Compile Include="Models\RequestedPart.cs" />
+    <Compile Include="Models\RequestMetaData.cs" />
+    <Compile Include="Models\AppSetting.cs" />
+    <Compile Include="Models\ShopQuotations.cs" />
+    <Compile Include="Models\ShubeddakDashboard.cs" />
+    <Compile Include="Models\ShubeddakUser.cs" />
+    <Compile Include="Models\SignInResponse.cs" />
+    <Compile Include="Models\StatusLog.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\SupplierProfile.cs" />
+    <Compile Include="Models\SurveyorsSignature.cs" />
+    <Compile Include="Models\TabInfo.cs" />
+    <Compile Include="Models\Tchek\TchekDamageCost.cs" />
+    <Compile Include="Models\Tchek\TchekDamageImageList.cs" />
+    <Compile Include="Models\Tchek\TchekDamages.cs" />
+    <Compile Include="Models\Tchek\TchekDevice.cs" />
+    <Compile Include="Models\Tchek\TchekImages.cs" />
+    <Compile Include="Models\Tchek\TchekInspection.cs" />
+    <Compile Include="Models\Tchek\TchekResponse.cs" />
+    <Compile Include="Models\Tchek\TchekToken.cs" />
+    <Compile Include="Models\Tchek\TchekVehicle.cs" />
+    <Compile Include="Models\TechnicalNote.cs" />
+    <Compile Include="Models\TechnicalNotesData.cs" />
+    <Compile Include="Models\TRApproval.cs" />
+    <Compile Include="Models\UpdateAutomotivePart.cs" />
+    <Compile Include="Models\UpdatePart.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserPermission.cs" />
+    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleGroups.cs" />
+    <Compile Include="Models\VehicleSeriesMeta.cs" />
+    <Compile Include="Models\Workshop.cs" />
+    <Compile Include="Models\WSICMeta.cs" />
+    <Compile Include="Models\Year.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
