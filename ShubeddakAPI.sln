@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShubeddakAPI", "ShubeddakAPI\ShubeddakAPI.csproj", "{C7A046F5-C227-48D6-B8F3-183470618F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAL", "BAL\BAL.csproj", "{94E216EE-6780-44E4-BEC2-A37492EF0BAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{0D7BA752-F32B-452B-824E-0CB4F84DF3C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEL", "MODEL\MODEL.csproj", "{1C04C698-EF0E-4932-8807-C90D828E270E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7A046F5-C227-48D6-B8F3-183470618F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A046F5-C227-48D6-B8F3-183470618F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A046F5-C227-48D6-B8F3-183470618F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A046F5-C227-48D6-B8F3-183470618F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E216EE-6780-44E4-BEC2-A37492EF0BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E216EE-6780-44E4-BEC2-A37492EF0BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E216EE-6780-44E4-BEC2-A37492EF0BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E216EE-6780-44E4-BEC2-A37492EF0BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7BA752-F32B-452B-824E-0CB4F84DF3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7BA752-F32B-452B-824E-0CB4F84DF3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7BA752-F32B-452B-824E-0CB4F84DF3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7BA752-F32B-452B-824E-0CB4F84DF3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C04C698-EF0E-4932-8807-C90D828E270E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C04C698-EF0E-4932-8807-C90D828E270E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C04C698-EF0E-4932-8807-C90D828E270E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C04C698-EF0E-4932-8807-C90D828E270E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36C959AA-7316-44DC-8374-58ADAB6B5986}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://technocares.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BAL\\BAL.csproj
+		SccProjectName1 = BAL
+		SccLocalPath1 = BAL
+		SccProjectUniqueName2 = DAL\\DAL.csproj
+		SccProjectName2 = DAL
+		SccLocalPath2 = DAL
+		SccProjectUniqueName3 = MODEL\\MODEL.csproj
+		SccProjectName3 = MODEL
+		SccLocalPath3 = MODEL
+		SccProjectUniqueName4 = ShubeddakAPI\\ShubeddakAPI.csproj
+		SccProjectName4 = ShubeddakAPI
+		SccLocalPath4 = ShubeddakAPI
+	EndGlobalSection
+EndGlobal

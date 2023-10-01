@@ -1,0 +1,6 @@
+D:\ASP.NET\joclaims-api\Moeez\DAL\bin\Debug\DAL.dll
+D:\ASP.NET\joclaims-api\Moeez\DAL\bin\Debug\DAL.pdb
+D:\ASP.NET\joclaims-api\Moeez\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\ASP.NET\joclaims-api\Moeez\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\ASP.NET\joclaims-api\Moeez\DAL\obj\Debug\DAL.dll
+D:\ASP.NET\joclaims-api\Moeez\DAL\obj\Debug\DAL.pdb
