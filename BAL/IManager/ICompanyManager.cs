@@ -117,7 +117,7 @@ namespace BAL.IManager
         RequestResponse UpdateRequestDraft(DraftData draftData);
         List<AccidentMarker> GetAccidentMarkers();
         List<Accident> SearchAccident(string searchQuery,int CompanyID);
-        string UpdateDraftData(int DraftID,int AccidentID,int ModifiedBy);
+        RequestResponse UpdateDraftData(int DraftID,int AccidentID,int ModifiedBy);
         Object GetPendingDraft(int StatusID, string VIN, int? WorkshopID);
         string UpdateDraftStatus(int StatusID,int DraftID, int ModifiedBy, string RejectDraftReason, string RestoreDraftReason);
         List<Accident> GetAccident(string VIN,int? CompanyID);
@@ -140,7 +140,7 @@ namespace BAL.IManager
         Object getSingleAccidentDraft(int CompanyID,int ClaimentID);
 
 
-        bool saveRequestTaskImage(List<Image> image, double? TotalPrice, int? RequestID);
+        bool saveRequestTaskImage(List<Image> image, double? TotalPrice, int? RequestID,int? IsEnterLabourPartPriceChecked);
 
 
         bool getDuplicateVinCheck(int CompanyID, string VIN);
@@ -164,6 +164,8 @@ namespace BAL.IManager
         string saveDepriciationValue(int RequestID, double depriciationValue , int? requestedPartID,int? UserID);
 
         bool updateSurveyorAppointment(int UserID,DateTime SurveyorAppointmentDate,int accidentID);
+
+        bool SaveClearanceSummaryFreeText(int AccidentID, string Text);
 
 
 

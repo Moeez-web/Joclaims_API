@@ -11,5 +11,6 @@ namespace MODEL.Models
         public List<Image> image { get; set; }
         public double? TotalPrice { get; set; }
         public int? RequestID { get; set; }
+        public int? IsEnterLabourPartPriceChecked { get; set; }
     }
 }

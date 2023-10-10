@@ -502,10 +502,10 @@ namespace ShubeddakAPI.Controllers
         #region saveTotallabourPartsPrice
         [HttpGet]
         [Route("api/Partshop/saveTotallabourPartsPrice")]
-        public HttpResponseMessage saveTotallabourPartsPrice(int demandID, int TotallabourPartsPrice,int UserID,int CompanyTypeID, int RoleID)
+        public HttpResponseMessage saveTotallabourPartsPrice(int demandID, double TotallabourPartsPrice,int UserID,int CompanyTypeID, int RoleID , int? IsEnterLabourPartPriceChecked)
         {
             string result = null;
-            result = _partShopManager.saveTotallabourPartsPrice(demandID, TotallabourPartsPrice, UserID, CompanyTypeID, RoleID);
+            result = _partShopManager.saveTotallabourPartsPrice(demandID, TotallabourPartsPrice, UserID, CompanyTypeID, RoleID, IsEnterLabourPartPriceChecked);
             if (result != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, result);

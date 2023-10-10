@@ -219,5 +219,10 @@ public int AccidentID { get; set; }
         public bool? SRCCCover { get; set; }
         public bool? IsWindshieldCover { get; set; }
         public int? WindshieldCoverAmount { get; set; }
+        public string AccidentIndividualReturnName { get; set; }
+        public string AccidentIndividualReturnPhoneNumber { get; set; }
+        public string AccidentIndividualReturnAddress { get; set; }
+        public string FaultyVehicleCountryName { get; set; }
+        public int? FaultyVehicleCountryID { get; set; }
     }
 }

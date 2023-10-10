@@ -24,5 +24,6 @@ namespace MODEL.Models
         public string SupplierName { get; set; }
         public string SupplierPhone { get; set; }
         public int? RequestNumber { get; set; }
+        public double? DiscountValue { get; set; }
     }
 }

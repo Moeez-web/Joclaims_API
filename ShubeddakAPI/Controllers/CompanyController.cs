@@ -1807,10 +1807,11 @@ int? ModelID, int? YearID, string SearchQuery, int? UserID, int? ICWorkshopID,in
                         CCEmails = "";
                     }
                     var subject = "New draft is created against VIN: " + result.VIN;
-                    var body = Properties.Resources.draftrequest_email;
+
+                    var body = result.CountryID ==  2 ? Properties.Resources.draftrequest_email_en :   Properties.Resources.draftrequest_email;
                     body = body.Replace("workshopname", result.WorkshopName);
-                    body = body.Replace("carmake", result.ArabicMakeName);
-                    body = body.Replace("carmodel", result.ArabicModelName);
+                    body = body.Replace("carmake", result.CountryID == 2 ?  result.EnglishMakeName : result.ArabicMakeName);
+                    body = body.Replace("carmodel", result.CountryID == 2 ? result.EnglishModelName : result.ArabicModelName);
                     body = body.Replace("caryear", result.YearCode.ToString());
                     body = body.Replace("VIN", result.VIN);
                     body = body.Replace("policereportnumber", result.PoliceReportNumber == "" || result.PoliceReportNumber == null ? "N/A": result.PoliceReportNumber);
@@ -1957,8 +1958,72 @@ int? ModelID, int? YearID, string SearchQuery, int? UserID, int? ICWorkshopID,in
         [Route("api/Company/UpdateDraftData")]
         public IHttpActionResult UpdateDraftData(int DraftID, int AccidentID, int ModifiedBy)
         {
-            string result = null;
+            //string result = null;
+            //result = _companyManager.UpdateDraftData(DraftID, AccidentID, ModifiedBy);
+            int response;
+            RequestResponse result = null;
             result = _companyManager.UpdateDraftData(DraftID, AccidentID, ModifiedBy);
+            if (result.DraftID > 0)
+            {
+                if (result.EmailTo != null && result.EmailTo != "")
+                {
+                    string receivers = result.EmailTo;
+                    string CCEmails;
+                    if (result.EmailCC != null)
+                    {
+                        CCEmails = result.EmailCC;
+                    }
+                    else
+                    {
+                        CCEmails = "";
+                    }
+                    var subject = "New draft is created against VIN: " + result.VIN;
+                    var body = result.CountryID == 2 ? Properties.Resources.draftrequest_email_en : Properties.Resources.draftrequest_email;
+                    body = body.Replace("workshopname", result.WorkshopName);
+                    body = body.Replace("carmake", result.CountryID == 2 ? result.EnglishMakeName : result.ArabicMakeName);
+                    body = body.Replace("carmodel",result.CountryID == 2 ?  result.EnglishModelName : result.ArabicModelName);
+                    body = body.Replace("caryear", result.YearCode.ToString());
+                    body = body.Replace("VIN", result.VIN);
+                    body = body.Replace("policereportnumber", result.PoliceReportNumber == "" || result.PoliceReportNumber == null ? "N/A" : result.PoliceReportNumber);
+                    DateTime? lossDate = result.LossDate;
+                    string formattedLossDate = lossDate.HasValue ? lossDate.Value.ToString("MM/dd/yyyy") : "N/A";
+                    body = body.Replace("LossDate", formattedLossDate);
+                    if (result.CountryID == 2)
+                    {
+                        body = body.Replace("PlateNo", result.PlateNo);
+                        body = body.Replace("RepairDays", result.RepairDays.ToString());
+                        body = body.Replace("ReplacementCarFooter", result.ReplacementCarFooter);
+                    }
+
+
+
+                    if (result.AccidentNo == "0")
+                    {
+                        body = body.Replace("vehicleownername", "N/A");
+                        body = body.Replace("accidentnumber", "N/A");
+                        if (result.CountryID == 2)
+                        {
+                            body = body.Replace("PolicyNumber", "N/A");
+                        }
+
+                        body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/draft-list/view-draft?DraftID=" + result.AccidentID.ToString() + "");
+                    }
+                    else
+                    {
+                        body = body.Replace("vehicleownername", result.VehicleOwnerName);
+                        body = body.Replace("accidentnumber", result.AccidentNo);
+                        if (result.CountryID == 2)
+                        {
+                            body = body.Replace("PolicyNumber", result.PolicyNumber);
+                        }
+
+                        body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/accident-list/view-accident?queryParam=" + result.AccidentID.ToString() + "");
+
+                    }
+
+                    response = SendEmail.sendEmailwithCC(receivers, subject, body.ToString(), CCEmails);
+                }
+            }
             if (result != null)
             {
                 return Ok(result);
@@ -2465,7 +2530,7 @@ int? ModelID, int? YearID)
         {
 
             bool result = false;
-            result = _companyManager.saveRequestTaskImage(image, null, null);
+            result = _companyManager.saveRequestTaskImage(image, null, null,null);
             if (result != false)
             {
                 return Ok(result);
@@ -2482,7 +2547,7 @@ int? ModelID, int? YearID)
         {
 
             bool result = false;
-            result = _companyManager.saveRequestTaskImage(CarReadyImagesPrice.image, CarReadyImagesPrice.TotalPrice, CarReadyImagesPrice.RequestID);
+            result = _companyManager.saveRequestTaskImage(CarReadyImagesPrice.image, CarReadyImagesPrice.TotalPrice, CarReadyImagesPrice.RequestID, CarReadyImagesPrice.IsEnterLabourPartPriceChecked);
             if (result != false)
             {
                 return Ok(result);
@@ -2919,6 +2984,21 @@ int? ModelID, int? YearID)
         {
             bool result = false;
             result = _companyManager.updateSurveyorAppointment(UserID, SurveyorAppointmentDate, accidentID);
+            if (result != false)
+            {
+                return Ok(result);
+            }
+            return NotFound();
+        }
+        #endregion
+
+        #region SaveClearanceSummaryFreeText
+        [HttpGet]
+        [Route("api/Company/SaveClearanceSummaryFreeText")]
+        public IHttpActionResult SaveClearanceSummaryFreeText(int AccidentID, string Text)
+        {
+            bool result = false;
+            result = _companyManager.SaveClearanceSummaryFreeText(AccidentID, Text);
             if (result != false)
             {
                 return Ok(result);

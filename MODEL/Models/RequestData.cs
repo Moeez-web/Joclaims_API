@@ -31,6 +31,7 @@ namespace MODEL.Models
         public List<PurchaseOrder> Suppliers { get; set; }
 
         public List<Image> CarReadyImages { get; set; }
+        public List<PDFDetail> PDFDetail { get; set; }
 
 
     }

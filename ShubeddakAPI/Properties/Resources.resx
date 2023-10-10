@@ -127,4 +127,7 @@
   <data name="forgot_email" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\forgot-email.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="draftrequest_email_en" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\draftrequest_email_en.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

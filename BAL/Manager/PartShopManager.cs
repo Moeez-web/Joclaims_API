@@ -1346,7 +1346,8 @@ namespace BAL.Manager
                         CompanyAddress2 = req.Field<string>("CompanyAddress2"),
                         CompanyCountryName = req.Field<string>("CompanyCountryName"),
                         TotalLabour = req.Field<int?>("TotalLabour"),
-                        TotalCost = req.Field<double?>("TotalCost")
+                        TotalCost = req.Field<double?>("TotalCost"),
+                        IsEnterLabourPartPriceChecked = req.Field<int?>("IsEnterLabourPartPriceChecked")
 
                     }).ToList();
 
@@ -1923,7 +1924,7 @@ namespace BAL.Manager
         #endregion
 
         #region
-        public string saveTotallabourPartsPrice(int demandID, int TotallabourPartsPrice, int UserID, int CompanyTypeID, int RoleID)
+        public string saveTotallabourPartsPrice(int demandID, double TotallabourPartsPrice, int UserID, int CompanyTypeID, int RoleID,int? IsEnterLabourPartPriceChecked)
         {
             try
             {
@@ -1934,7 +1935,8 @@ namespace BAL.Manager
                         new SqlParameter { ParameterName = "@TotalCost" , Value = TotallabourPartsPrice},
                         new SqlParameter { ParameterName = "@UserID" , Value = UserID},
                         new SqlParameter { ParameterName = "@CompanyTypeID" , Value = CompanyTypeID},
-                        new SqlParameter { ParameterName = "@RoleID" , Value = RoleID}
+                        new SqlParameter { ParameterName = "@RoleID" , Value = RoleID},
+                        new SqlParameter { ParameterName = "@IsEnterLabourPartPriceChecked" , Value = IsEnterLabourPartPriceChecked}
                     };
 
                 var result = ADOManager.Instance.ExecuteScalar("[SaveTotallabourPartsPrice]", CommandType.StoredProcedure, sParameter);

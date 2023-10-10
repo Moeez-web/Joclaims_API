@@ -243,7 +243,7 @@ namespace BAL.Manager
                     //    }).ToList();
                     //}
 
-                  
+
 
                     if (RoleID != 6)
                     {
@@ -260,7 +260,7 @@ namespace BAL.Manager
                             MaxPrice = pm.Field<int?>("MaxPrice"),
                         }).ToList();
 
-                      
+
 
                         commonMeta.Cities = dt.Tables[7].AsEnumerable().Select(cty => new City
                         {
@@ -293,7 +293,7 @@ namespace BAL.Manager
                             AICustomerRequestApproval = fp.Field<bool?>("AICustomerRequestApproval")
                         }).ToList();
 
-                    
+
 
                         commonMeta.joclaimsSetting = dt.Tables[11].AsEnumerable().Select(js => new JoclaimsSetting
                         {
@@ -325,21 +325,9 @@ namespace BAL.Manager
 
                             }).ToList();
                         }
-
-
-
-
-
-
                     }
-
-
-
-
                 }
-
                 return commonMeta;
-
             }
             catch (Exception ex)
             {

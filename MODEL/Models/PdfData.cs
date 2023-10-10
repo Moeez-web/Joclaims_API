@@ -19,5 +19,6 @@ namespace MODEL.Models
         public int SupplierID { get; set; }
         public int QuotationID { get; set; }
         public List<PdfData> SupplierPdfs { get; set; }
+        public int? CountryID { get; set; }
     }
 }

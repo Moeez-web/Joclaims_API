@@ -36,6 +36,8 @@ namespace MODEL.Models
 
         public int? CountryID { get; set; }
         public string ReplacementCarFooter { get; set; }
+        public string EnglishMakeName { get; set; }
+        public string EnglishModelName { get; set; }
 
     }
 }

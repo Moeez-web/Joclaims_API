@@ -164,8 +164,22 @@ namespace MODEL.Models
         public int? IsAgencyRequest { get; set; }
         public double? TotalCost { get; set; }
         public int? TotalLabour { get; set; }
+        public string LPO { get; set; }
+        public string ReferenceNo { get; set; }
+        public string PolicyNumber { get; set; }
+        public string section1 { get; set; }
 
+        public string ClearanceSummaryFreeText  { get; set; }
 
-       
+        public string ClearanceSummaryImage { get; set; }
+        public int? IsEnterLabourPartPriceChecked { get; set; }
+        public string RepairOrderApprovedDate { get; set; }
+        public string SectionTwo { get; set; }
+        public string SectionThree { get; set; }
+        public string SectionFour { get; set; }
+        public int Discount { get; set; }
+        public Double? VAT { get; set; }
+        public Double? VATValue { get; set; }
+        public Double? TOTAL { get; set; }
     }
 }

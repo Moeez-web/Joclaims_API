@@ -107,6 +107,31 @@ namespace ShubeddakAPI.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;!doctype html&gt;
+        ///&lt;html dir=&quot;rtl&quot; lang=&quot;en&quot; xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt;
+        ///&lt;head&gt;
+        ///
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        ///    &lt;!--&lt;title&gt;Email confirmation&lt;/title&gt;--&gt;
+        ///
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///
+        ///        .logo {
+        ///            height: 45px;
+        ///            width: 120px;
+        ///        }
+        ///
+        ///       [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string draftrequest_email_en {
+            get {
+                return ResourceManager.GetString("draftrequest_email_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!doctype html&gt;
         ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot;&gt;
         ///&lt;head&gt;
         ///
@@ -122,13 +147,6 @@ namespace ShubeddakAPI.Properties {
         internal static string forgot_email {
             get {
                 return ResourceManager.GetString("forgot_email", resourceCulture);
-            }
-        }
-        internal static string draftrequst_email
-        {
-            get
-            {
-                return ResourceManager.GetString("draftrequst_email", resourceCulture);
             }
         }
     }

@@ -107,6 +107,7 @@ namespace MODEL.Models
         public double? DepriciationPrice { get; set; }
 
         public double? Depriciationvalue { get; set; }
+        
 
     }
 }

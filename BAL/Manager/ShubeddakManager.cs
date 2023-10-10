@@ -4009,7 +4009,8 @@ namespace BAL.Manager
                         RequestID = req.Field<int>("RequestID"),
                         IsAgencyRequest = req.Field<int?>("IsAgencyRequest"),
                         TotalPartLabourPrice = req.Field<double?>("TotalPartLabourPrice"),
-                        TotalCost = req.Field<double?>("TotalCost")
+                        TotalCost = req.Field<double?>("TotalCost"),
+                        IsEnterLabourPartPriceChecked = req.Field<int?>("IsEnterLabourPartPriceChecked")
                     }).FirstOrDefault();
                     requestTask = dt.Tables[1].AsEnumerable().Select(cmp => new RequestTask
                     {

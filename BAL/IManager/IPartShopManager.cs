@@ -37,6 +37,6 @@ namespace BAL.IManager
         AppSetting GetAppVersion(string MobileAppVersion, int? SupplierID);
         string updatePartiallySellingStatus(int QuotationID, bool IsPartialSellings, int ModifiedBy);
         AppSetting GetMobileAppVersion(string MobileAppVersion, int? UserID);
-        string saveTotallabourPartsPrice(int demandID,int TotallabourPartsPrice,int UserID, int CompanyTypeID, int RoleID);
+        string saveTotallabourPartsPrice(int demandID,double TotallabourPartsPrice,int UserID, int CompanyTypeID, int RoleID , int? IsEnterLabourPartPriceChecked);
     }
 }

@@ -714,7 +714,8 @@ namespace BAL.Manager
                         new SqlParameter { ParameterName = "@AOGCover" , Value = accident.Accident.AOGCover},
                         new SqlParameter { ParameterName = "@SRCCCover" , Value = accident.Accident.SRCCCover},
                         new SqlParameter { ParameterName = "@IsWindshieldCover" , Value = accident.Accident.IsWindshieldCover},
-                        new SqlParameter { ParameterName = "@WindshieldCoverAmount" , Value = accident.Accident.WindshieldCoverAmount}
+                        new SqlParameter { ParameterName = "@WindshieldCoverAmount" , Value = accident.Accident.WindshieldCoverAmount},
+                        new SqlParameter { ParameterName = "@FaultyVehicleCountryID" , Value = accident.Accident.FaultyVehicleCountryID}
 
                     };
 
@@ -834,7 +835,11 @@ namespace BAL.Manager
                         new SqlParameter { ParameterName = "@AOGCover" , Value = accident.Accident.AOGCover},
                         new SqlParameter { ParameterName = "@SRCCCover" , Value = accident.Accident.SRCCCover},
                         new SqlParameter { ParameterName = "@IsWindshieldCover" , Value = accident.Accident.IsWindshieldCover},
-                        new SqlParameter { ParameterName = "@WindshieldCoverAmount" , Value = accident.Accident.WindshieldCoverAmount}
+                        new SqlParameter { ParameterName = "@WindshieldCoverAmount" , Value = accident.Accident.WindshieldCoverAmount}, 
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnName" , Value = accident.Accident.AccidentIndividualReturnName},
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnPhoneNumber" , Value = accident.Accident.AccidentIndividualReturnPhoneNumber},
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnAddress" , Value = accident.Accident.AccidentIndividualReturnAddress},
+                        new SqlParameter { ParameterName = "@FaultyVehicleCountryID" , Value = accident.Accident.FaultyVehicleCountryID}
                     };
 
                 var result = Convert.ToInt32(ADOManager.Instance.ExecuteScalar("[updateAccident]", CommandType.StoredProcedure, sParameter));
@@ -945,7 +950,8 @@ namespace BAL.Manager
                         SurveyorName = req.Field<string>("SurveyorName"),
                         SurveyorAppointmentDate = req.Field<DateTime?>("SurveyorAppointmentDate"),
                         IsAgencyRequest = req.Field<int?>("IsAgencyRequest"),
-                        DeductibleStatus = req.Field<int?>("DeductibleStatus")
+                        DeductibleStatus = req.Field<int?>("DeductibleStatus"),
+                        IsEnterLabourPartPriceChecked = req.Field<int?>("IsEnterLabourPartPriceChecked"),
 
                     }).ToList();
 
@@ -1196,7 +1202,10 @@ namespace BAL.Manager
                         FaultyVehicleModelName = req.Field<string>("FaultyVehicleEnglishModelName"),
                         FaultyVehicleYearCode = req.Field<int?>("FaultyVehicleYearCode"),
                         VehicleCountryName = req.Field<string>("VehicleCountryName"),
-                        InvoiceImage = req.Field<string>("InvoiceImage")
+                        InvoiceImage = req.Field<string>("InvoiceImage"),
+                        CompanyName = req.Field<string>("CompanyName"),
+                        VAT = req.Field<int?>("VAT"),
+                        LPO = req.Field<string>("LPO")
                     }).FirstOrDefault();
 
                     requestData.RequestedParts = dt.Tables[1].AsEnumerable().Select(rp => new RequestedPart
@@ -1283,7 +1292,8 @@ namespace BAL.Manager
                         WsRejectionNote = qp.Field<string>("WsRejectionNote"),
                         RejectedWorkshopPartReasonID = qp.Field<int>("RejectedWorkshopPartReasonID"),
                         DepriciationPrice = qp.Field<double?>("DepriciationPrice"),
-                        Depriciationvalue = qp.Field<double?>("Depriciationvalue")
+                        Depriciationvalue = qp.Field<double?>("Depriciationvalue"),
+                        Price = qp.Field<double?>("Price"),
 
                     }).ToList();
 
@@ -1371,7 +1381,7 @@ namespace BAL.Manager
                         IsApproved = po.Field<bool?>("IsApproved"),
                         CreatedOn = po.Field<DateTime>("CreatedOn"),
                         ModifiedOn = po.Field<DateTime?>("ModifiedOn"),
-                        ESignatureURL = po.Field<string>("ESignatureURL"),
+                        ESignatureURL = po.Field<string>("ESignatureURL")
 
                     }).ToList();
 
@@ -1402,7 +1412,8 @@ namespace BAL.Manager
                     {
                         SupplierID = rp.Field<int?>("SupplierID"),
                         SupplierName = rp.Field<string>("SupplierName"),
-                        POAmount = rp.Field<double?>("POAmount")
+                        POAmount = rp.Field<double?>("POAmount"),
+                        DiscountValue = rp.Field<double?>("DiscountValue"),
                     }).ToList();
 
                     requestData.POApprovedSignatures = dt.Tables[14].AsEnumerable().Select(rp => new SurveyorsSignature
@@ -1423,6 +1434,16 @@ namespace BAL.Manager
                         IsDeleted = cmp.Field<bool>("IsDeleted")
 
 
+
+                    }).ToList();
+                    requestData.PDFDetail = dt.Tables[16].AsEnumerable().Select(pd => new PDFDetail
+                    {
+                      CompanyID = pd.Field<int>("CompanyID"),
+                      ObjectTypeID = pd.Field<int>("ObjectTypeID"),
+                      SectionOne = pd.Field<string>("SectionOne"),
+                      SectionTwo = pd.Field<string>("SectionTwo"),
+                      SectionThree = pd.Field<string>("SectionThree"),
+                      SectionFour = pd.Field<string>("SectionFour")
 
                     }).ToList();
                 }
@@ -1758,7 +1779,9 @@ namespace BAL.Manager
                         AOGCover = acd.Field<bool?>("AOGCover"),
                         SRCCCover = acd.Field<bool?>("SRCCCover"),
                         IsWindshieldCover = acd.Field<bool?>("IsWindshieldCover"),
-                        WindshieldCoverAmount = acd.Field<int?>("WindshieldCoverAmount")
+                        WindshieldCoverAmount = acd.Field<int?>("WindshieldCoverAmount"),
+                        FaultyVehicleCountryID = acd.Field<int?>("FaultyVehicleCountryID"),
+                        FaultyVehicleCountryName = acd.Field<string>("FaultyVehicleCountryName")
                     }).FirstOrDefault();
 
                     accidentData.Notes = dt.Tables[1].AsEnumerable().Select(nt => new Note
@@ -3946,7 +3969,10 @@ namespace BAL.Manager
                         OtherPlusText = req.Field<string>("OtherPlusText"),
                         OtherMinText = req.Field<string>("OtherMinText"),
                         FirstRequestLabourPrice = req.Field<double?>("FirstRequestLabourPrice"),
-                        OurResponsibility = req.Field<int?>("OurResponsibility")
+                        OurResponsibility = req.Field<int?>("OurResponsibility"),
+                        ClearanceSummaryFreeText = req.Field<string>("ClearanceSummaryFreeText"),
+                        ClearanceSummaryImage = req.Field<string>("ClearanceSummaryImage"),
+                        PoliceReport = req.Field<string>("PoliceReportNumber")
                     }).FirstOrDefault();
 
                     clearanceSummary.RequestedParts = dt.Tables[1].AsEnumerable().Select(rp => new RequestedPart
@@ -5394,10 +5420,10 @@ namespace BAL.Manager
                 //"IRONPDF-507372A640-108944-4F5481-1E3106A2C9-C6CCF902-UEx6BCBD2F73F257D8-PROJECT.LICENSE.1.DEVELOPER.SUPPORTED.UNTIL.17.OCT.2019";
                 //bool result2 = IronPdf.License.IsValidLicense("IRONPDF-507372A640-108944-4F5481-1E3106A2C9-C6CCF902-UEx6BCBD2F73F257D8-PROJECT.LICENSE.1.DEVELOPER.SUPPORTED.UNTIL.17.OCT.2019");
 
-                pdfData.elementHtml = (string)JsonConvert.DeserializeObject(pdfData.elementHtml);
+                pdfData.elementHtml = HttpUtility.HtmlDecode(pdfData.elementHtml);
                 pdfData.SupplierPdfs.ForEach(item =>
                 {
-                    item.elementHtml = (string)JsonConvert.DeserializeObject(item.elementHtml);
+                    item.elementHtml = HttpUtility.HtmlDecode(item.elementHtml);
                 });
                 //errorOnLine++;
 
@@ -5414,15 +5440,13 @@ namespace BAL.Manager
                 HtmlToPdf.PrintOptions.MarginLeft = 4;  //millimeters
                 //errorOnLine++;
                 HtmlToPdf.PrintOptions.MarginRight = 2;
-                //errorOnLine++;
-                HtmlToPdf.PrintOptions.Header = new HtmlHeaderFooter()
-                {
-                    Height = 0
-                };
+               
+                var  footer = "<center><i>{page} of {total-pages}<i></center>";
+                
                 HtmlToPdf.PrintOptions.Footer = new HtmlHeaderFooter()
                 {
                     Height = 10,
-                    HtmlFragment = "<center><i>{page} of {total-pages}<i></center>",
+                    HtmlFragment = footer ,
                     DrawDividerLine = false
                 };
                 //errorOnLine++;
@@ -5505,11 +5529,12 @@ namespace BAL.Manager
                     new SqlParameter {ParameterName = "@RequestID", Value = pdfData.RequestID},
                     new SqlParameter {ParameterName = "@ModifiedBy", Value = pdfData.ModifiedBy},
                     new SqlParameter {ParameterName = "@FileName", Value = "po-reports/" + fileName},
-                    new SqlParameter { ParameterName = "@XMLPurchaseOrder" , Value = XMLPurchaseOrder}
+                    new SqlParameter { ParameterName = "@XMLPurchaseOrder" , Value = XMLPurchaseOrder},
+                    new SqlParameter { ParameterName = "@CountryID" , Value = pdfData.CountryID}
                 };
 
 
-                var result = Convert.ToInt32(ADOManager.Instance.ExecuteScalar("[updaterequestPOPdfUrl]", CommandType.StoredProcedure, sParameter));
+                var result = Convert.ToString(ADOManager.Instance.ExecuteScalar("[updaterequestPOPdfUrl]", CommandType.StoredProcedure, sParameter));
                 //errorOnLine++;
 
 
@@ -5517,7 +5542,7 @@ namespace BAL.Manager
 
                 //errorOnLine++;
 
-                return "po-reports/" + fileName;
+                return  result;
             }
             catch (Exception ex)
             {
@@ -6208,6 +6233,18 @@ namespace BAL.Manager
                         IsLowestMatching = req.Field<bool?>("IsLowestMatching"),
                         ROPdfURL = req.Field<string>("ROPdfURL"),
                         IsRequestWorkshopIC = req.Field<bool?>("IsRequestWorkshopIC"),
+                        ReferenceNo = req.Field<string>("ReferenceNo"),
+                        PolicyNumber = req.Field<string>("PolicyNumber"),
+                        section1 = req.Field<string>("section1"),
+                        RepairOrderApprovedDate = req.Field<DateTime?>("RepairOrderApprovedDate") == null ? null : req.Field<DateTime>("RepairOrderApprovedDate").ToString("dd/MM/yyyy"),
+                        SectionTwo = req.Field<string>("SectionTwo"),
+                        SectionThree = req.Field<string>("SectionThree"),
+                        SectionFour = req.Field<string>("SectionFour"),
+                        Discount = req.Field<int>("Discount"),
+                        VAT = req.Field<Double?>("VAT"),
+                        VATValue = req.Field<Double?>("VATValue"),
+                        TOTAL = req.Field<Double?>("TOTAL"),
+
                     }).FirstOrDefault();
 
                     requestData.OrderedParts = dt.Tables[1].AsEnumerable().Select(qp => new QuotationPart
@@ -6306,7 +6343,7 @@ namespace BAL.Manager
                 //"IRONPDF-507372A640-108944-4F5481-1E3106A2C9-C6CCF902-UEx6BCBD2F73F257D8-PROJECT.LICENSE.1.DEVELOPER.SUPPORTED.UNTIL.17.OCT.2019";
                 //bool result2 = IronPdf.License.IsValidLicense("IRONPDF-507372A640-108944-4F5481-1E3106A2C9-C6CCF902-UEx6BCBD2F73F257D8-PROJECT.LICENSE.1.DEVELOPER.SUPPORTED.UNTIL.17.OCT.2019");
 
-                pdfData.elementHtml = (string)JsonConvert.DeserializeObject(pdfData.elementHtml);
+                pdfData.elementHtml = HttpUtility.HtmlDecode(pdfData.elementHtml);
                 //errorOnLine++;
 
                 HtmlToPdf HtmlToPdf = new IronPdf.HtmlToPdf();
@@ -6323,14 +6360,19 @@ namespace BAL.Manager
                 //errorOnLine++;
                 HtmlToPdf.PrintOptions.MarginRight = 2;
                 //errorOnLine++;
-                HtmlToPdf.PrintOptions.Header = new HtmlHeaderFooter()
+                var footer = "";
+                if (pdfData.CountryID == 2)
                 {
-                    Height = 0
-                };
+                    footer = "<div style='text-align:center; color: grey;'> <h4 >P.O.Box5282 Manama, Kingdom of Bahrain, Tel: +973.17-585222, Fax: +973.17-784847</h4></div>"; ;
+                }
+                else
+                {
+                    footer = "<center><i>{page} of {total-pages}<i></center>";
+                }
                 HtmlToPdf.PrintOptions.Footer = new HtmlHeaderFooter()
                 {
                     Height = 10,
-                    HtmlFragment = "<center><i>{page} of {total-pages}<i></center>",
+                    HtmlFragment = footer,
                     DrawDividerLine = false
                 };
                 //errorOnLine++;
@@ -6374,7 +6416,7 @@ namespace BAL.Manager
                 //errorOnLine++;
 
                 //errorOnLine++;
-
+                 
                 return "ro-reports/" + fileName;
             }
             catch (Exception ex)
@@ -7388,6 +7430,8 @@ namespace BAL.Manager
                     requestResponse.CountryID = Convert.ToInt32(dt.Tables[0].Rows[0]["CountryID"]);
                     requestResponse.ReplacementCarFooter = Convert.ToString(dt.Tables[0].Rows[0]["ReplacementCarFooter"]);
                     requestResponse.ReplacementCarFooter = HttpUtility.HtmlDecode(requestResponse.ReplacementCarFooter);
+                    requestResponse.EnglishMakeName = Convert.ToString(dt.Tables[0].Rows[0]["EnglishMakeName"]);
+                    requestResponse.EnglishModelName = Convert.ToString(dt.Tables[0].Rows[0]["EnglishModelName"]);
 
 
                 }
@@ -7816,13 +7860,13 @@ namespace BAL.Manager
         #endregion
 
         #region UpdateDraftData
-        public string UpdateDraftData(int DraftID, int AccidentID, int ModifiedBy)
+        public RequestResponse UpdateDraftData(int DraftID, int AccidentID, int ModifiedBy)
         {
             try
             {
                 DataSet dt = new DataSet();
 
-
+                RequestResponse requestResponse = new RequestResponse();
 
 
                 var sParameter = new List<SqlParameter>
@@ -7834,8 +7878,40 @@ namespace BAL.Manager
                     };
 
 
-                var result = Convert.ToInt32(ADOManager.Instance.ExecuteScalar("[UpdateDraftData]", CommandType.StoredProcedure, sParameter));
-                return result > 0 ? "Draft Updated successfully" : DataValidation.dbError;
+                using (dt =  ADOManager.Instance.DataSet("[UpdateDraftData]", CommandType.StoredProcedure, sParameter))
+                {
+                    if (dt.Tables.Count > 0)
+                    {
+                        requestResponse.Result = Convert.ToString(dt.Tables[0].Rows[0]["Result"]);
+                        requestResponse.DraftID = Convert.ToInt32(dt.Tables[0].Rows[0]["DraftID"]);
+                        requestResponse.EmailTo = Convert.ToString(dt.Tables[0].Rows[0]["EmailTo"]);
+                        requestResponse.WorkshopName = Convert.ToString(dt.Tables[0].Rows[0]["WorkshopName"]);
+                        requestResponse.VIN = Convert.ToString(dt.Tables[0].Rows[0]["VIN"]);
+                        requestResponse.AccidentNo = Convert.ToString(dt.Tables[0].Rows[0]["AccidentNo"]);
+                        requestResponse.VehicleOwnerName = Convert.ToString(dt.Tables[0].Rows[0]["VehicleOwnerName"]);
+                        requestResponse.ArabicMakeName = Convert.ToString(dt.Tables[0].Rows[0]["ArabicMakeName"]);
+                        requestResponse.ArabicModelName = Convert.ToString(dt.Tables[0].Rows[0]["ArabicModelName"]);
+                        requestResponse.YearCode = Convert.ToInt32(dt.Tables[0].Rows[0]["YearCode"]);
+                        requestResponse.AccidentID = Convert.ToInt32(dt.Tables[0].Rows[0]["AccidentID"]);
+                        requestResponse.IsAIDraft = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsAIDraft"]);
+                        requestResponse.PoliceReportNumber = Convert.ToString(dt.Tables[0].Rows[0]["PoliceReportNumber"]);
+                        requestResponse.LossDate = Convert.ToDateTime(dt.Tables[0].Rows[0]["LossDate"]).Date;
+                        requestResponse.PolicyNumber = Convert.ToString(dt.Tables[0].Rows[0]["PolicyNumber"]);
+                        requestResponse.PlateNo = Convert.ToString(dt.Tables[0].Rows[0]["PlateNo"]);
+                        requestResponse.RepairDays = Convert.ToInt32(dt.Tables[0].Rows[0]["RepairDays"]);
+                        requestResponse.CountryID = Convert.ToInt32(dt.Tables[0].Rows[0]["CountryID"]);
+                        requestResponse.ReplacementCarFooter = Convert.ToString(dt.Tables[0].Rows[0]["ReplacementCarFooter"]);
+                        requestResponse.ReplacementCarFooter = HttpUtility.HtmlDecode(requestResponse.ReplacementCarFooter);
+                        requestResponse.EnglishMakeName = Convert.ToString(dt.Tables[0].Rows[0]["EnglishMakeName"]);
+                        requestResponse.EnglishModelName = Convert.ToString(dt.Tables[0].Rows[0]["EnglishModelName"]);
+
+                    }
+                   
+
+
+                }
+
+                return requestResponse;
             }
             catch (Exception ex)
             {
@@ -8781,7 +8857,7 @@ namespace BAL.Manager
         }
         #endregion
 
-        public bool saveRequestTaskImage(List<Image> image, double? TotalPrice, int? RequestID)
+        public bool saveRequestTaskImage(List<Image> image, double? TotalPrice, int? RequestID,int? IsEnterLabourPartPriceChecked)
         {
             DataSet dt = new DataSet();
             try
@@ -8793,7 +8869,8 @@ namespace BAL.Manager
                 {
                     new SqlParameter { ParameterName = "@XMLsaveRequestTaskImage" , Value = XMLsaveRequestTaskImage  },
                     new SqlParameter { ParameterName = "@TotalPrice" , Value = TotalPrice },
-                    new SqlParameter { ParameterName = "@RequestID" , Value = RequestID }
+                    new SqlParameter { ParameterName = "@RequestID" , Value = RequestID },
+                    new SqlParameter { ParameterName = "@IsEnterLabourPartPriceChecked" , Value = IsEnterLabourPartPriceChecked }
 
                 };
 
@@ -9307,6 +9384,34 @@ namespace BAL.Manager
 
 
                 var result = Convert.ToInt32(ADOManager.Instance.ExecuteScalar("[updateSurveyorAppointment]", CommandType.StoredProcedure, sParameter));
+                return result > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        #endregion
+
+        #region SaveClearanceSummaryFreeText
+        public bool SaveClearanceSummaryFreeText(int AccidentID, string Text)
+        {
+            try
+            {
+                DataSet dt = new DataSet();
+
+
+
+
+                var sParameter = new List<SqlParameter>
+                    {
+
+                        new SqlParameter { ParameterName = "@AccidentID" , Value = AccidentID},
+                        new SqlParameter { ParameterName = "@Text" , Value = Text}
+                    };
+
+
+                var result = Convert.ToInt32(ADOManager.Instance.ExecuteScalar("[SaveClearanceSummaryFreeText]", CommandType.StoredProcedure, sParameter));
                 return result > 0 ? true : false;
             }
             catch (Exception ex)

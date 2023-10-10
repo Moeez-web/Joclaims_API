@@ -291,6 +291,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="offers-reports\All-Offers-Request-No25042156-RequestID-2692.pdf" />
+    <Content Include="ExportDocuments\Documents.zip" />
+    <Content Include="ExportDocuments\Documentsشركة التامين الاردنيه 2022-10-5 - 2022-10-5.zip" />
+    <Content Include="ExportDocuments\Documentsشركة التامين الاردنيه 2022-12-1 - 2022-12-3.zip" />
+    <Content Include="ExportDocuments\Documentsشركة التامين الاردنيه 2022-12-3 - 2022-12-1.zip" />
+    <Content Include="ExportDocuments\Documentsشركة التامين الاردنيه 2022-12-6 - 2022-12-1.zip" />
+    <Content Include="ExportDocuments\Gallery شركة التامين الاردنيه 2022-12-1 - 2022-12-3.zip" />
+    <Content Include="ExportDocuments\Gallery شركة التامين الاردنيه 2022-12-3 - 2022-12-1.zip" />
+    <Content Include="ExportDocuments\Gallery شركة التامين الاردنيه 2022-12-6 - 2022-12-1.zip" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Resources\confirmation-email.html" />
     <None Include="Resources\forgot-email.html" />

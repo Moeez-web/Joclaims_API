@@ -95,6 +95,7 @@
     <Compile Include="Models\OrderedParts.cs" />
     <Compile Include="Models\PartsBargain.cs" />
     <Compile Include="Models\PartsMeta.cs" />
+    <Compile Include="Models\PDFDetail.cs" />
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\ReplacementCar.cs" />
     <Compile Include="Models\Report\Common\AccidentCarPartsPrice.cs" />
