@@ -2171,7 +2171,11 @@ namespace BAL.Manager
                         BestMinOfferMatchingPrice = req.Field<double?>("BestMinOfferMatchingPrice"),
                         BestOfferMatchingQuotationID = req.Field<int?>("BestOfferMatchingQuotationID"),
                         IsPurchasing = req.Field<bool?>("IsPurchasing"),
-                        IsRequestWorkshopIC = req.Field<bool?>("IsRequestWorkshopIC")
+                        IsRequestWorkshopIC = req.Field<bool?>("IsRequestWorkshopIC"),
+                        PolicyNumber = req.Field<string>("PolicyNumber"),
+                        OwnerPhoneNo = req.Field<string>("OwnerPhoneNo"),
+                        AccidentHappendOn = req.Field<DateTime?>("AccidentHappendOn"),
+                        SurveyorAppointmentDate = req.Field<DateTime?>("SurveyorAppointmentDate"),
                     }).FirstOrDefault();
 
                     requestAllOffersData.SupplierQuotations = dt.Tables[1].AsEnumerable().Select(req => new Quotation
@@ -2216,7 +2220,10 @@ namespace BAL.Manager
                         MatchingOfferSortNo = req.Field<int>("MatchingOfferSortNo"),
                         MatchingFillingRate = req.Field<decimal?>("MatchingFillingRate"),
                         LowestOfferMatchingPrice = req.Field<double?>("LowestOfferMatchingPrice"),
-                        SupplierType = req.Field<Int16>("SupplierType")
+                        SupplierType = req.Field<Int16>("SupplierType"),
+                        POROAmount = req.Field<Double?>("POROAmount"),
+                        LabourDays = req.Field<Double?>("LabourDays"),
+                        
                     }).ToList();
 
                     requestAllOffersData.RequestedParts = dt.Tables[2].AsEnumerable().Select(rp => new RequestedPart
@@ -2369,10 +2376,23 @@ namespace BAL.Manager
                 //errorOnLine++;
                 HtmlToPdf.PrintOptions.MarginRight = 2;
                 //errorOnLine++;
+
+
+                var footer = "";
+
+                if (pdfData.CountryID == 2)
+                {
+                    footer = "<b style=\"display:block;text-align: center;color:grey\">P.O Box 5282 Manama, Kingdom of Bahrain, Telephone: 00973 17784847<br>www.soldarity.com</b><br><center><i>Page&nbsp;{page} of {total-pages}<i></center>";
+                }
+                else
+                {
+                footer = "<center><i>{page} of {total-pages}<i></center>";
+                }
+
                 HtmlToPdf.PrintOptions.Footer = new HtmlHeaderFooter()
                 {
-                    Height = 10,
-                    HtmlFragment = "<center><i>{page} of {total-pages}<i></center>",
+                    Height = 25,
+                    HtmlFragment = footer,
                     DrawDividerLine = false
                 };
                 //errorOnLine++;

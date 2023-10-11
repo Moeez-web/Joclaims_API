@@ -715,7 +715,9 @@ namespace BAL.Manager
                         new SqlParameter { ParameterName = "@SRCCCover" , Value = accident.Accident.SRCCCover},
                         new SqlParameter { ParameterName = "@IsWindshieldCover" , Value = accident.Accident.IsWindshieldCover},
                         new SqlParameter { ParameterName = "@WindshieldCoverAmount" , Value = accident.Accident.WindshieldCoverAmount},
-                        new SqlParameter { ParameterName = "@FaultyVehicleCountryID" , Value = accident.Accident.FaultyVehicleCountryID}
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnName" , Value = accident.Accident.AccidentIndividualReturnName},
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnPhoneNumber" , Value = accident.Accident.AccidentIndividualReturnPhoneNumber},
+                        new SqlParameter { ParameterName = "@AccidentIndividualReturnAddress" , Value = accident.Accident.AccidentIndividualReturnAddress}
 
                     };
 
@@ -1077,9 +1079,7 @@ namespace BAL.Manager
                     }).ToList();
 
                 }
-
                 return companyrequests;
-
             }
             catch (Exception ex)
             {
@@ -1205,7 +1205,10 @@ namespace BAL.Manager
                         InvoiceImage = req.Field<string>("InvoiceImage"),
                         CompanyName = req.Field<string>("CompanyName"),
                         VAT = req.Field<int?>("VAT"),
-                        LPO = req.Field<string>("LPO")
+                        LPO = req.Field<string>("LPO"),
+                        AccidentIndividualReturnName = req.Field<string>("AccidentIndividualReturnName"),
+                        AccidentIndividualReturnPhoneNumber = req.Field<string>("AccidentIndividualReturnPhoneNumber"),
+                        AccidentIndividualReturnAddress = req.Field<string>("AccidentIndividualReturnAddress")
                     }).FirstOrDefault();
 
                     requestData.RequestedParts = dt.Tables[1].AsEnumerable().Select(rp => new RequestedPart
@@ -1781,7 +1784,10 @@ namespace BAL.Manager
                         IsWindshieldCover = acd.Field<bool?>("IsWindshieldCover"),
                         WindshieldCoverAmount = acd.Field<int?>("WindshieldCoverAmount"),
                         FaultyVehicleCountryID = acd.Field<int?>("FaultyVehicleCountryID"),
-                        FaultyVehicleCountryName = acd.Field<string>("FaultyVehicleCountryName")
+                        FaultyVehicleCountryName = acd.Field<string>("FaultyVehicleCountryName"),
+                        AccidentIndividualReturnName = acd.Field<string>("AccidentIndividualReturnName"),
+                        AccidentIndividualReturnPhoneNumber = acd.Field<string>("AccidentIndividualReturnPhoneNumber"),
+                        AccidentIndividualReturnAddress = acd.Field<string>("AccidentIndividualReturnAddress")
                     }).FirstOrDefault();
 
                     accidentData.Notes = dt.Tables[1].AsEnumerable().Select(nt => new Note
@@ -6363,7 +6369,7 @@ namespace BAL.Manager
                 var footer = "";
                 if (pdfData.CountryID == 2)
                 {
-                    footer = "<div style='text-align:center; color: grey;'> <h4 >P.O.Box5282 Manama, Kingdom of Bahrain, Tel: +973.17-585222, Fax: +973.17-784847</h4></div>"; ;
+                    footer = "<div style=\"text-align:center; color: grey;\"> <h4 >P.O.Box5282 Manama, Kingdom of Bahrain, Tel: +973.17-585222, Fax: +973.17-784847</h4></div>"; ;
                 }
                 else
                 {
@@ -6371,7 +6377,7 @@ namespace BAL.Manager
                 }
                 HtmlToPdf.PrintOptions.Footer = new HtmlHeaderFooter()
                 {
-                    Height = 10,
+                    Height = 15,
                     HtmlFragment = footer,
                     DrawDividerLine = false
                 };
@@ -7518,7 +7524,9 @@ namespace BAL.Manager
                         MilageUnit=am.Field<int?>("MilageUnit"),
                         LossDate=am.Field<DateTime?>("LossDate"),
                         RestoreDraftReason=am.Field<string>("RestoreDraftReason"),
-                        IsAgencyDraft=am.Field<int?>("IsAgencyDraft")
+                        IsAgencyDraft=am.Field<int?>("IsAgencyDraft"),
+                        IsDeductible = am.Field<bool?>("IsDeductible"),
+                        DeductibleStatus = am.Field<int?>("DeductibleStatus")
 
                     }).ToList();
 

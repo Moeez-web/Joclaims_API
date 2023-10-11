@@ -96,6 +96,8 @@ namespace MODEL.Models
 
         public DateTime? SuggestionCounterTime  { get; set; }
         public bool? IsPrioritySupplier { get; set; }
+        public Double? POROAmount { get; set; }
+        public Double? LabourDays { get; set; }
 
     }
 }

@@ -38,7 +38,7 @@ namespace MODEL.Models
         //public string ArabicMakeName { get; set; }
         //public string ModelCode { get; set; }
         //public string ArabicModelName { get; set; }
-        //public int YearCode { get; set; }
+        public int YearCode { get; set; }
         //public string AccidentNo { get; set; }
         public double? POTotalAmount { get; set; }
         public bool? WillDeliver { get; set; }
