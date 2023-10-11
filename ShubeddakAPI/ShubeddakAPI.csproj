@@ -398,6 +398,7 @@
     <Content Include="MakeImages\Volvo.png" />
     <Content Include="MakeImages\zxauto.png" />
     <Content Include="Resources\draftrequest_email.html" />
+    <Content Include="Resources\draftrequest_email_en.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

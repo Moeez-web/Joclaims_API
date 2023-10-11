@@ -1813,7 +1813,7 @@ int? ModelID, int? YearID, string SearchQuery, int? UserID, int? ICWorkshopID,in
                     body = body.Replace("carmake", result.CountryID == 2 ?  result.EnglishMakeName : result.ArabicMakeName);
                     body = body.Replace("carmodel", result.CountryID == 2 ? result.EnglishModelName : result.ArabicModelName);
                     body = body.Replace("caryear", result.YearCode.ToString());
-                    body = body.Replace("VIN", result.VIN);
+                    body = body.Replace("vin", result.VIN);
                     body = body.Replace("policereportnumber", result.PoliceReportNumber == "" || result.PoliceReportNumber == null ? "N/A": result.PoliceReportNumber);
                     DateTime? lossDate = result.LossDate;
                     string formattedLossDate = lossDate.HasValue ? lossDate.Value.ToString("MM/dd/yyyy") : "N/A";
@@ -1835,8 +1835,15 @@ int? ModelID, int? YearID, string SearchQuery, int? UserID, int? ICWorkshopID,in
                         {
                             body = body.Replace("PolicyNumber", "N/A");
                         }
+                        if(result.CountryID == 2)
+                        {
+                            body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaimsbahrain"] + "/ic/draft-list/view-draft?DraftID=" + result.AccidentID.ToString() + "");
+                        }
+                        else
+                        {
+                            body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/draft-list/view-draft?DraftID=" + result.AccidentID.ToString() + "");
+                        }
                         
-                        body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/draft-list/view-draft?DraftID=" + result.AccidentID.ToString() + "");
                     }
                     else
                     {
@@ -1846,8 +1853,15 @@ int? ModelID, int? YearID, string SearchQuery, int? UserID, int? ICWorkshopID,in
                         {
                             body = body.Replace("PolicyNumber", result.PolicyNumber);
                         }
-                        
-                        body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/accident-list/view-accident?queryParam=" + result.AccidentID.ToString() + "");
+                        if (result.CountryID == 2)
+                        {
+                            body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaimsbahrain"] + "/ic/accident-list/view-accident?queryParam=" + result.AccidentID.ToString() + "");
+                        }
+                        else
+                        {
+                            body = body.Replace("ShowAccident", WebConfigurationManager.AppSettings["joclaims"] + "/ic/accident-list/view-accident?queryParam=" + result.AccidentID.ToString() + "");
+                        }
+                            
                         
                     }
 
